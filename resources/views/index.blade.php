@@ -152,7 +152,7 @@
         });
     });
 
-    $(document).on('change', "input#totalPaidAmount", function() {
+    $(document).on('keyup', "input#totalPaidAmount", function() {
 
         var totalPaidAmount = $(this).val();
         var total = $("input#checkOutTotal").val();
@@ -165,6 +165,8 @@
 
     $(document).on('click', ".checkoutSubmit", function(e) {
 
+
+        
         var total = $('#checkOutTotal').val();
         var payment = $('#checkoutpayment').val();
 
