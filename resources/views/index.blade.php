@@ -165,29 +165,32 @@
 
     $(document).on('click', ".checkoutSubmit", function(e) {
 
-
+        var totalPaidAmount = $('#totalPaidAmount').val();
         
-        var total = $('#checkOutTotal').val();
-        var payment = $('#checkoutpayment').val();
+        if(totalPaidAmount === '' || totalPaidAmount == null ) {
+            alert("Total Paid Amount Field cannot be empty");
+        }
+        else{
+            var total = $('#checkOutTotal').val();
+            var payment = $('#checkoutpayment').val();
 
-        $.ajax({
-            url: "{{ route('checkout') }}",
-            method: "POST",
-            data: {
-                _token: "{{ csrf_token() }}" ,
-                total :  total ,
-                payment : payment
-            }
-        }).done(function (response) {
+            $.ajax({
+                url: "{{ route('checkout') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}" ,
+                    total :  total ,
+                    payment : payment
+                }
+            }).done(function (response) {
 
-            $('#checkOutModal').modal('hide');
-            $('#cart').html(response.html);
+                $('#checkOutModal').modal('hide');
+                $('#cart').html(response.html);
 
-        }).fail(function () {
-            $('#cart').html("Something went wrong");
-        });
-
-
+            }).fail(function () {
+                $('#cart').html("Something went wrong");
+            });
+        }
     });
 
     $(document).on('click', ".cartCancel", function(e) {
